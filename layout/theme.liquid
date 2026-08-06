@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}" data-currency-code="{{ localization.country.currency.iso_code | default: shop.currency }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="currency-code" content="{{ localization.country.currency.iso_code | default: shop.currency }}">
+    {{ content_for_header }}
+    {{ 'wallet-system.css' | asset_url | stylesheet_tag }}
+    <script src="{{ 'wallet-config.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'wallet-utils.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'wallet-storage.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'wallet-cart-api.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'wallet-ui.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'wallet-system.js' | asset_url }}" defer="defer"></script>
+  </head>
+  <body>
+    {{ content_for_layout }}
+  </body>
+</html>

@@ -1,0 +1,15 @@
+{% comment %}Minimal cart footer section with wallet component above checkout.{% endcomment %}
+<div class="page-width" data-cart-footer>
+  {% render 'wallet-cart' %}
+  <form id="wallet-cart-form" action="{{ routes.cart_url }}" method="post" class="cart__footer">
+    <p class="cart__total">Subtotal: {{ cart.total_price | money }}</p>
+    <button type="submit" name="checkout" class="button">Checkout</button>
+  </form>
+</div>
+
+{% schema %}
+{
+  "name": "Cart footer with wallet",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,18 @@
+{% comment %}Frontend-only wallet credit simulation. All data values are cents.{% endcomment %}
+{% if customer %}
+  {% assign wallet_balance = customer.metafields.custom.wallet_balance.value | default: 0 %}
+  <div class="wallet-cart-box" data-wallet-balance="{{ wallet_balance }}" data-cart-total="{{ cart.total_price }}">
+    <label class="wallet-checkbox" for="apply-wallet-credit">
+      <input id="apply-wallet-credit" type="checkbox" aria-describedby="wallet-available-balance">
+      <span>Apply Wallet Credit</span>
+    </label>
+    <div id="wallet-available-balance" class="wallet-available">Available Balance: <strong>{{ wallet_balance | money }}</strong></div>
+    <div id="wallet-discount-preview" aria-live="polite"></div>
+    <div class="wallet-cart-summary">
+      <div class="wallet-summary-row"><span>Cart Total</span><span id="wallet-cart-total">{{ cart.total_price | money }}</span></div>
+      <div id="wallet-discount-row" class="wallet-summary-row hidden"><span>Wallet Credit</span><span id="wallet-discount-amount" class="wallet-discount"></span></div>
+      <div class="wallet-summary-row wallet-final-total"><span>Final Total</span><span id="wallet-final-total">{{ cart.total_price | money }}</span></div>
+    </div>
+    <div id="wallet-savings-message" class="wallet-savings-message hidden" role="status" aria-live="polite"></div>
+  </div>
+{% endif %}

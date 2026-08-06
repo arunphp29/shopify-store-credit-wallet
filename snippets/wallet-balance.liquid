@@ -1,0 +1,8 @@
+{% comment %}Displays customer wallet balance. The metafield is stored in cents.{% endcomment %}
+{% if customer %}
+  {% assign wallet_balance = customer.metafields.custom.wallet_balance.value | default: 0 %}
+  <div class="wallet-balance">
+    <span aria-hidden="true">💰</span>
+    <span>You have <strong>{{ wallet_balance | money }}</strong> Store Credit</span>
+  </div>
+{% endif %}
