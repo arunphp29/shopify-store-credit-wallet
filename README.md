@@ -9,7 +9,10 @@ This repository is a wallet feature package, not a complete storefront theme. Do
 Create a customer metafield with namespace/key `custom.wallet_balance`. Store it as a `number_integer` in cents: `5000` represents $50.00.
 
 
-> **Note:** This repository demonstrates frontend architecture and Shopify theme development. A production-ready implementation requires a custom Shopify app, Shopify Functions, and backend services, which are planned for future releases.
+> **Note: This repository demonstrates frontend architecture and Shopify theme development. A production-ready implementation requires a custom Shopify app, Shopify Functions, and backend services, which are planned for future releases.**
+
+
+
 
 ## 🏗 Production Implementation Guide
 
@@ -56,14 +59,15 @@ These events keep wallet balances accurate and automatically process credits, de
 
 ### Phase 5 — Wallet Database
 
-Move wallet data from Local Storage to a secure backend.
+ Move wallet data from Local Storage to a secure backend. 
+
 ---
 
 ### Phase 6 — Customer Dashboard
-
 Allow customers to:
 
 - View Wallet Balance  - View Wallet History  - Track Credits  - Track Debits
+
 - Redeem Wallet Balance  - View Cashback Rewards
 
 ---
@@ -72,9 +76,9 @@ Allow customers to:
 
 Provide an admin interface for merchants
 
-## Structure
-
-`wallet-config.js` defines constants; utilities, storage, AJAX cart access, UI rendering, and controller logic are isolated into their own modules.
+> ## Other simple way we can use Store Credit and Shopify Flow:-
+For a real non-Plus implementation, use Shopify's native Store Credit as the source of truth. Enable Customer accounts and Store credit in Shopify Admin, then display the signed-in customer's real balance with `customer.store_credit_account.balance`. Shopify securely applies and debits the credit at checkout. 
+To award credit automatically, create a Shopify Flow workflow using the **Order paid** trigger. Add a condition for the reward rule, such as an order total of $500 or more, then use **Send Admin API request** to call Shopify's `storeCreditAccountCredit` mutation and issue $50 credit to the customer. Store each processed order ID to avoid duplicate rewards from webhook retries, and define how refunds reverse earned credit.
 
 ## License
 
