@@ -8,9 +8,69 @@ This repository is a wallet feature package, not a complete storefront theme. Do
 
 Create a customer metafield with namespace/key `custom.wallet_balance`. Store it as a `number_integer` in cents: `5000` represents $50.00.
 
-## Important limitation
 
-This is a visual frontend simulation. Cart attributes and local storage are browser-controlled and do not affect Shopify checkout. A production wallet requires a Custom App, Shopify Functions, server-side balance validation, and webhooks to reconcile successful orders.
+> **Note:** This repository demonstrates frontend architecture and Shopify theme development. A production-ready implementation requires a custom Shopify app, Shopify Functions, and backend services, which are planned for future releases.
+
+## 🏗 Production Implementation Guide
+
+To convert this project into a real production-ready Wallet System, additional backend components are required.
+
+### Phase 1 — Theme (Current Repository)
+Status: ✅ Completed
+
+---
+
+### Phase 2 — Shopify Custom App
+Create a custom Shopify App responsible for: 
+
+- Wallet Management  - Wallet Transactions  - Wallet History
+- Admin Dashboard    - Customer Wallet API  - Merchant Settings
+
+Recommended stack:
+- Node.js - React   - Shopify Admin GraphQL API  - PostgreSQL
+
+---
+
+### Phase 3 — Shopify Functions
+Implement Shopify Functions to enable:
+
+- Real Wallet Deduction  - Checkout Validation  - Store Credit Logic
+- Discount Application  - Balance Verification
+
+This is where the actual checkout amount is modified.
+
+---
+
+### Phase 4 — Webhooks
+
+Use Shopify Webhooks to synchronize wallet balances.
+
+Recommended webhooks:
+
+- orders/paid  - orders/create  - refunds/create
+- orders/cancelled  - customers/create
+
+These events keep wallet balances accurate and automatically process credits, debits, refunds, and cashback.
+
+---
+
+### Phase 5 — Wallet Database
+
+Move wallet data from Local Storage to a secure backend.
+---
+
+### Phase 6 — Customer Dashboard
+
+Allow customers to:
+
+- View Wallet Balance  - View Wallet History  - Track Credits  - Track Debits
+- Redeem Wallet Balance  - View Cashback Rewards
+
+---
+
+### Phase 7 — Merchant Dashboard
+
+Provide an admin interface for merchants
 
 ## Structure
 
